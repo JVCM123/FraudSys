@@ -10,11 +10,13 @@
     <PackageReference Include="AWSSDK.Core" Version="4.0.0.13" />
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="4.0.1.9" />
     <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="4.0.2" />
+    <PackageReference Include="MediatR" Version="12.5.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FraudSys.Access\FraudSys.DataAccess.csproj" />
-    <ProjectReference Include="..\FraudSys.Core\FraudSys.Core.csproj" />
+    <ProjectReference Include="..\FraudSys.Application\FraudSys.Application.csproj" /> 
   </ItemGroup>
 
 </Project>

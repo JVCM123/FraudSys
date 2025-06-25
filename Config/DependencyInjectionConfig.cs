@@ -1,6 +1,8 @@
 ﻿using Amazon.DynamoDBv2;
 using FraudSys.Core.Notifications;
-using System.Runtime.CompilerServices;
+using FraudSys.DataAccess.Repositories;
+using FraudSys.Domain.Interfaces;
+using FraudSys.Domain.Services;
 
 namespace FraudSys.MVC.Config
 {
@@ -9,7 +11,10 @@ namespace FraudSys.MVC.Config
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
             services.AddScoped<Notifier>();
-            services.AddSingleton<IAmazonDynamoDB>();
+            services.AddAWSService<IAmazonDynamoDB>();
+
+            services.AddScoped<IContaCorrenteLimiteRepository, ContaCorrenteLimiteRepository>();
+            services.AddScoped<IContaCorrenteLimiteService, ContaCorrenteLimiteService>();
 
             return services;
         }

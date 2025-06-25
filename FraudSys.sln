@@ -5,8 +5,8 @@ VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudSys.MVC", "FraudSys.MVC.csproj", "{7AD2770E-021D-42BD-948D-8910C5936A03}"
 	ProjectSection(ProjectDependencies) = postProject
+		{2096990F-6DF7-4F8C-A760-CA323B132A43} = {2096990F-6DF7-4F8C-A760-CA323B132A43}
 		{8FFE51C1-2677-410C-9089-6F888B79AC8C} = {8FFE51C1-2677-410C-9089-6F888B79AC8C}
-		{B78379E3-4E87-4B32-8567-A4203771B509} = {B78379E3-4E87-4B32-8567-A4203771B509}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudSys.Domain", "..\FraudSys.Domain\FraudSys.Domain.csproj", "{B78379E3-4E87-4B32-8567-A4203771B509}"
@@ -17,6 +17,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudSys.Core", "..\FraudSys.Core\FraudSys.Core.csproj", "{8FFE51C1-2677-410C-9089-6F888B79AC8C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudSys.DataAccess", "..\FraudSys.Access\FraudSys.DataAccess.csproj", "{163080D4-7CF3-4B54-932B-CFE341A36CDA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8FFE51C1-2677-410C-9089-6F888B79AC8C} = {8FFE51C1-2677-410C-9089-6F888B79AC8C}
+		{B78379E3-4E87-4B32-8567-A4203771B509} = {B78379E3-4E87-4B32-8567-A4203771B509}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FraudSys.Application", "..\FraudSys.Application\FraudSys.Application.csproj", "{2096990F-6DF7-4F8C-A760-CA323B132A43}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B78379E3-4E87-4B32-8567-A4203771B509} = {B78379E3-4E87-4B32-8567-A4203771B509}
 	EndProjectSection
@@ -43,6 +49,10 @@ Global
 		{163080D4-7CF3-4B54-932B-CFE341A36CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{163080D4-7CF3-4B54-932B-CFE341A36CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{163080D4-7CF3-4B54-932B-CFE341A36CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2096990F-6DF7-4F8C-A760-CA323B132A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2096990F-6DF7-4F8C-A760-CA323B132A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2096990F-6DF7-4F8C-A760-CA323B132A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2096990F-6DF7-4F8C-A760-CA323B132A43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
