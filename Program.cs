@@ -1,3 +1,4 @@
+using FraudSys.Application.Mapping;
 using FraudSys.MVC.Config;
 using MediatR;
 
@@ -9,9 +10,12 @@ internal class Program
 
         builder.Services.AddControllersWithViews();
 
-        builder.ConfigureAWS();
+        builder.Services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(typeof(DomainToViewModelMapping).Assembly));
 
-        builder.Services.AddMediatR(typeof(Program));   
+        builder.Services.AddAutoMapper(typeof(DomainToViewModelMapping).Assembly);
+
+        builder.ConfigureAWS();
 
         builder.Services.ResolveDependencies();
 
@@ -32,7 +36,7 @@ internal class Program
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
+            pattern: "{controller=ContaCorrente}/{action=Index}/{id?}");
 
         app.Run();
     }

@@ -1,0 +1,33 @@
+﻿@using FraudSys.Application.ViewModel
+@model ContaCorrenteLimiteViewModel
+@{
+    ViewData["Title"] = "Editar Limite";
+}
+
+<h2>Editar Limite</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="NumAgencia"></label>
+        <input asp-for="NumAgencia" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NumConta"></label>
+        <input asp-for="NumConta" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Documento"></label>
+        <input asp-for="Documento" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LimitePix"></label>
+        <input asp-for="LimitePix" class="form-control" />
+        <span asp-validation-for="LimitePix" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Atualizar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-2">Cancelar</a>
+</form>
