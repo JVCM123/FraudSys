@@ -10,7 +10,6 @@ namespace FraudSys.MVC.Config
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
-            services.AddAWSService<IAmazonDynamoDB>(ServiceLifetime.Singleton);
             services.AddScoped<Notifier>(); 
 
             services.AddScoped<IContaCorrenteLimiteRepository, ContaCorrenteLimiteRepository>();

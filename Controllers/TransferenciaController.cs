@@ -30,6 +30,7 @@ namespace FraudSys.MVC.Controllers
             if (!await _mediator.Send(new RealizarTransferenciaPixCommand(transferencia)))
             {
                 SetErrors();
+
                 return View(transferencia);
             }
 

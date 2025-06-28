@@ -1,4 +1,5 @@
-﻿using FraudSys.Core.Config;
+﻿using Amazon.DynamoDBv2;
+using FraudSys.Core.Config;
 
 namespace FraudSys.MVC.Config
 {
@@ -11,6 +12,8 @@ namespace FraudSys.MVC.Config
 
             var dynamoConfig = builder.Configuration.GetSection("DynamoTables");
             builder.Services.Configure<DbSettings>(dynamoConfig);
+
+            builder.Services.AddAWSService<IAmazonDynamoDB>(ServiceLifetime.Singleton);
 
             return builder;
         }

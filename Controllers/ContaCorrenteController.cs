@@ -38,7 +38,9 @@ namespace FraudSys.MVC.Controllers
 
             if (resultado is null)
             {
+                _notifier.AddNotification("Não foi encontrada uma conta com as informações fornecidas.");
                 SetErrors();
+
                 return View();
             }
 
