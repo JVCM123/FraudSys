@@ -9,23 +9,32 @@ namespace FraudSys.MVC.Controllers
     public class ContaCorrenteController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly Notifier _notifier;
 
-        public ContaCorrenteController(IMediator mediator, Notifier _notifer) : base(_notifer)
+        public ContaCorrenteController(IMediator mediator, Notifier notifier) : base(notifier)
         {
             _mediator = mediator;
+            _notifier = notifier;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            TempData["Sucesso"] = "Teste de erro";
             return View();
         }
 
-        [HttpPost("buscar-conta")]
+        [HttpPost]
         public async Task<IActionResult> Index(ContaCorrenteLimiteViewModel filtro)
         {
-            var resultado = await _mediator.Send(new GetContaCorrenteLimiteByIdCommand(filtro.NumAgencia, filtro.NumConta));
+            if (filtro.NumConta is null or <= 0 || filtro.NumAgencia is null or <= 0)
+            {
+                _notifier.AddNotification("Informe número da conta e agência para a busca.");
+                SetErrors();
+
+                return View();
+            }
+
+            var resultado = await _mediator.Send(new GetContaCorrenteLimiteByIdCommand((int)filtro.NumAgencia, (int)filtro.NumConta));
 
             if (resultado is null)
             {
@@ -43,14 +52,12 @@ namespace FraudSys.MVC.Controllers
         }
 
         [HttpPost("criar-conta")]
-        public async Task<IActionResult> Create(ContaCorrenteLimiteViewModel model)
+        public async Task<IActionResult> Create([FromForm] ContaCorrenteLimiteViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
-            var sucesso = await _mediator.Send(new AdicionarContaCorrenteLimiteCommand(model));
-
-            if (!sucesso)
+            if (!await _mediator.Send(new AdicionarContaCorrenteLimiteCommand(model)))
             {
                 SetErrors();
                 return View(model);
@@ -59,7 +66,7 @@ namespace FraudSys.MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet("editar-conta")]
+        [HttpGet("editar-conta/{agencia}/{conta}")]
         public async Task<IActionResult> Edit(int agencia, int conta)
         {
             var model = await _mediator.Send(new GetContaCorrenteLimiteByIdCommand(agencia, conta));
@@ -70,15 +77,13 @@ namespace FraudSys.MVC.Controllers
             return View(model);
         }
 
-        [HttpPost("editar-conta")]
+        [HttpPost("editar-conta/{agencia}/{conta}")]
         public async Task<IActionResult> Edit(ContaCorrenteLimiteViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
-            var sucesso = await _mediator.Send(new AtualizarContaCorrenteLimiteCommand(model));
-
-            if (!sucesso)
+            if (!await _mediator.Send(new AtualizarContaCorrenteLimiteCommand(model)))
             {
                 SetErrors();
                 return View(model);
@@ -87,7 +92,7 @@ namespace FraudSys.MVC.Controllers
             return RedirectToAction("Details", new { agencia = model.NumAgencia, conta = model.NumConta });
         }
 
-        [HttpGet("detalhes-conta")]
+        [HttpGet("detalhes-conta/{agencia}/{conta}")]
         public async Task<IActionResult> Details(int agencia, int conta)
         {
             var model = await _mediator.Send(new GetContaCorrenteLimiteByIdCommand(agencia, conta));

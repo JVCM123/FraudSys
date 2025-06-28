@@ -1,24 +1,28 @@
-﻿@using FraudSys.Application.ViewModel
-@model ContaCorrenteLimiteViewModel
+﻿@model ContaCorrenteLimiteViewModel
 @{
     ViewData["Title"] = "Detalhes do Limite";
 }
 
 <h2>Detalhes da Conta</h2>
 
-<div class="form-group">
-    <label>Agência:</label>
+<div class="form-group mb-4">
+    <label asp-for="NumAgencia"></label>
     <input class="form-control" value="@Model.NumAgencia" readonly />
 </div>
 
-<div class="form-group">
-    <label>Conta:</label>
+<div class="form-group mb-4">
+    <label asp-for="NumConta"></label>
     <input class="form-control" value="@Model.NumConta" readonly />
 </div>
 
-<div class="form-group">
-    <label>Limite PIX:</label>
-    <input class="form-control" value="@Model.LimitePix.ToString("N2")" readonly />
+<div class="form-group mb-4">
+    <label asp-for="Documento"></label>
+    <input class="form-control" value="@Model.Documento" readonly />
+</div>
+
+<div class="form-group mb-4">
+    <label asp-for="LimitePix"></label>
+    <input class="form-control" value="R$ @(Model.LimitePix?.ToString("N2"))" readonly />
 </div>
 
 <a asp-action="Index" class="btn btn-secondary mt-2">Voltar</a>

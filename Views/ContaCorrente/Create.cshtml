@@ -1,25 +1,30 @@
-﻿@using FraudSys.Application.ViewModel
-@model ContaCorrenteLimiteViewModel
+﻿@model ContaCorrenteLimiteViewModel
 @{
     ViewData["Title"] = "Criar Limite";
 }
 
 <h2>Criar Novo Limite</h2>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
+<form asp-action="Create">
+    <div class="form-group mb-4">
         <label asp-for="NumAgencia"></label>
         <input asp-for="NumAgencia" class="form-control" />
         <span asp-validation-for="NumAgencia" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-4">
         <label asp-for="NumConta"></label>
         <input asp-for="NumConta" class="form-control" />
         <span asp-validation-for="NumConta" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-4">
+        <label asp-for="Documento"></label>
+        <input asp-for="Documento" class="form-control" />
+        <span asp-validation-for="Documento" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-4">
         <label asp-for="LimitePix"></label>
         <input asp-for="LimitePix" class="form-control" />
         <span asp-validation-for="LimitePix" class="text-danger"></span>
@@ -27,4 +32,4 @@
 
     <button type="submit" class="btn btn-success mt-2">Salvar</button>
     <a asp-action="Index" class="btn btn-secondary mt-2">Cancelar</a>
-</form>
+</form> 

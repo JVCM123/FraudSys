@@ -1,21 +1,26 @@
-﻿@using FraudSys.Application.ViewModel
-
-@model ContaCorrenteLimiteViewModel
+﻿@model ContaCorrenteLimiteViewModel
 @{
     ViewData["Title"] = "Pesquisar Contas";
 }
 
-<h2>Pesquisar Limite</h2>
+<div class="row justify-content-around">
+    <h2 class="col">Pesquisar Limite</h2>
+    <a asp-action="Create" class="btn btn-primary col-1">Adicionar</a>
+</div>
+
+<hr />
 
 <form asp-action="Index" method="post">
     <div class="form-group">
         <label asp-for="NumAgencia"></label>
         <input asp-for="NumAgencia" class="form-control" />
     </div>
+    <br />
     <div class="form-group">
         <label asp-for="NumConta"></label>
         <input asp-for="NumConta" class="form-control" />
     </div>
+    <br />
     <button type="submit" class="btn btn-primary mt-2">Pesquisar</button>
 </form>
 
@@ -26,8 +31,8 @@
     <p><strong>Agência:</strong> @Model.NumAgencia</p>
     <p><strong>Conta:</strong> @Model.NumConta</p>
     <p><strong>Documento:</strong> @Model.Documento</p>
-    <p><strong>Limite PIX:</strong> R$ @Model.LimitePix.ToString("N2")</p>
+    <p><strong>Limite PIX:</strong> R$ @Model.LimitePix?.ToString("N2")</p>
 
     <a asp-action="Details" asp-route-agencia="@Model.NumAgencia" asp-route-conta="@Model.NumConta" class="btn btn-info">Detalhes</a>
     <a asp-action="Edit" asp-route-agencia="@Model.NumAgencia" asp-route-conta="@Model.NumConta" class="btn btn-warning">Editar</a>
-} 
+}
