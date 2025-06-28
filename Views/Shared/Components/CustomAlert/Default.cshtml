@@ -1,20 +1,11 @@
-﻿
-@if (TempData["Sucesso"] is not null)
+﻿@if (TempData["Sucesso"] is not null)
 {
     <script>
         Swal.fire({
             title: 'Sucesso!',
             text: '@Html.Raw(TempData["Sucesso"].ToString())',
             icon: 'success',
-            buttons: {
-                confirm: {
-                    text: 'Fechar',
-                    value: true,
-                    visible: true,
-                    className: 'btn btn-primary',
-                    closeModal: true
-                }
-            }
+            confirmButtonText: "Tudo bem"
         });
     </script>
 }
@@ -22,21 +13,11 @@
 @if (TempData["Erro"] is not null)
 {
     <script>
-        
         Swal.fire({
             title: 'Opa!',
             text: '@Html.Raw(TempData["Erro"].ToString())',
             icon: 'error',
-            buttons: {
-                confirm: {
-                    text: 'Fechar',
-                    value: true,
-                    visible: true,
-                    className: 'btn btn-danger',
-                    closeModal: true
-                }
-            }
+            confirmButtonText: "Tudo bem"
         });
     </script>
 }
-  

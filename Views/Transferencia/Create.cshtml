@@ -1,0 +1,47 @@
+﻿@model TransferenciaPixViewModel
+@{
+    ViewData["Title"] = "Realizar Transferência PIX";
+}
+
+<h2 class="mb-4">Realizar Transferência PIX</h2>
+
+<form asp-action="Create" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="AgenciaRemetente" class="control-label"></label>
+                <input asp-for="AgenciaRemetente" class="form-control" />
+                <span asp-validation-for="AgenciaRemetente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContaRemetente" class="control-label"></label>
+                <input asp-for="ContaRemetente" class="form-control" />
+                <span asp-validation-for="ContaRemetente" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="AgenciaDestinatario" class="control-label"></label>
+                <input asp-for="AgenciaDestinatario" class="form-control" />
+                <span asp-validation-for="AgenciaDestinatario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContaDestinatario" class="control-label"></label>
+                <input asp-for="ContaDestinatario" class="form-control" />
+                <span asp-validation-for="ContaDestinatario" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt-3">
+        <label asp-for="ValorTransferencia" class="control-label"></label>
+        <input asp-for="ValorTransferencia" class="form-control" id="ValorTransferencia" />
+        <span asp-validation-for="ValorTransferencia" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mt-4">
+        <button type="submit" class="btn btn-success">Realizar Transferência</button>
+        <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+    </div>
+</form>

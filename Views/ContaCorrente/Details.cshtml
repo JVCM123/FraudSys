@@ -26,3 +26,34 @@
 </div>
 
 <a asp-action="Index" class="btn btn-secondary mt-2">Voltar</a>
+<button class="btn btn-danger mt-2" id="btnRemoverConta" data-agencia="@Model.NumAgencia" data-conta="@Model.NumConta">Remover Conta</button>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#btnRemoverConta').click(function () {
+                const agencia = $(this).data('agencia');
+                const conta = $(this).data('conta');
+
+                Swal.fire({
+                    title: "Tem certeza?",
+                    text: "Você está prestes a remover esta conta. Essa ação não pode ser desfeita.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Sim",
+                    cancelButtonText: "Não"
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `/remover-conta/${agencia}/${conta}`,
+                            type: 'DELETE',
+                            success: function (data) {
+                                window.location.href = data.url;
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

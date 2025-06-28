@@ -63,6 +63,7 @@ namespace FraudSys.MVC.Controllers
                 return View(model);
             }
 
+            SetSuccess();   
             return RedirectToAction("Index");
         }
 
@@ -101,6 +102,28 @@ namespace FraudSys.MVC.Controllers
                 return NotFound();
 
             return View(model);
+        }
+
+        [HttpDelete("remover-conta/{agencia}/{conta}")]
+        public async Task<IActionResult> Delete(int agencia, int conta)
+        {
+            if (agencia <= 0 || conta <= 0)
+            {
+                _notifier.AddNotification("Agência e conta devem ser informadas.");
+                SetErrors();
+
+                return Json(new { url = Url.Action("Details", new { agencia, conta }) });
+            }
+
+            if (!await _mediator.Send(new RemoverContaCorrenteLimiteCommand(agencia, conta)))
+            {
+                SetErrors();
+                return Json(new { url = Url.Action("Details", new { agencia, conta }) });
+            }
+
+            SetSuccess();
+            return Json(new { url = Url.Action("Index") });
+
         }
     }
 }
